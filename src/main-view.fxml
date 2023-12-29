@@ -29,11 +29,11 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="1049.0" layoutY="9.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="50.0" styleClass="close" stylesheets="@mainStyle.css">
+                              <Button fx:id="closeButton" onAction="#handleCloseButtonAction" layoutX="1049.0" layoutY="9.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="50.0" styleClass="close" stylesheets="@mainStyle.css">
                                  <graphic>
                                     <FontAwesomeIcon glyphName="CLOSE" />
                                  </graphic></Button>
-                              <Button layoutX="998.0" layoutY="9.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" styleClass="minimize" stylesheets="@mainStyle.css">
+                              <Button fx:id="minimizeButton" onAction="#handleMinimizeButtonAction" layoutX="998.0" layoutY="9.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" styleClass="minimize" stylesheets="@mainStyle.css">
                                  <graphic>
                                     <FontAwesomeIcon glyphName="MINUS" />
                                  </graphic></Button>
@@ -121,18 +121,18 @@
                                        </font>
                                     </Label>
                                     <ComboBox fx:id="addStudent_gender" layoutX="97.0" layoutY="444.0" onAction="#addStudentGenderList" prefWidth="150.0" promptText="Gender" styleClass="textfield" stylesheets="@mainStyle.css" />
-                                    <Label layoutX="300.0" layoutY="327.0" text="Grade:">
+                                    <Label layoutX="303.0" layoutY="332.0" text="Grade:">
                                        <font>
                                           <Font name="Tahoma" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="addStudent_grade" layoutX="358.0" layoutY="328.0" prefHeight="25.0" prefWidth="172.0" styleClass="textfield" stylesheets="@mainStyle.css" />
+                                    <TextField fx:id="addStudent_grade" layoutX="358.0" layoutY="328.0" prefHeight="26.0" prefWidth="48.0" styleClass="textfield" stylesheets="@mainStyle.css" />
                                     <Label layoutX="300.0" layoutY="371.0" text="Module:">
                                        <font>
                                           <Font name="Tahoma" size="14.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="addStudent_Student" layoutX="358.0" layoutY="367.0" onAction="#addStudentModuleList" prefWidth="150.0" promptText="Choose" styleClass="textfield" stylesheets="@mainStyle.css" />
+                                    <ComboBox fx:id="addStudent_addModule" layoutX="358.0" layoutY="367.0" onAction="#addStudentModuleList" prefWidth="150.0" promptText="Choose" styleClass="textfield" stylesheets="@mainStyle.css" />
                                     <Button fx:id="addStudent_addBtn" layoutX="722.0" layoutY="469.0" mnemonicParsing="false" onAction="#addStudentAdd" prefHeight="41.0" prefWidth="94.0" styleClass="add-btn" stylesheets="@mainStyle.css" text="Add" />
                                     <Button fx:id="addStudent_updateBtn" layoutX="615.0" layoutY="469.0" mnemonicParsing="false" onAction="#addStudentUpdate" prefHeight="41.0" prefWidth="94.0" styleClass="update-btn" stylesheets="@mainStyle.css" text="Update" />
                                     <Button fx:id="addStudent_deleteBtn" layoutX="462.0" layoutY="469.0" mnemonicParsing="false" onAction="#addStudentDelete" prefHeight="41.0" prefWidth="94.0" styleClass="delete-btn" stylesheets="@mainStyle.css" text="Delete" />
@@ -143,6 +143,12 @@
                                        </font>
                                     </Label>
                                     <ComboBox fx:id="addStudent_Course" layoutX="357.0" layoutY="405.0" onAction="#addStudentCourseList" prefWidth="150.0" promptText="Choose" styleClass="textfield" stylesheets="@mainStyle.css" />
+                                    <Label layoutX="416.0" layoutY="331.0" text="Age:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addStudent_age" layoutX="456.0" layoutY="328.0" prefHeight="26.0" prefWidth="52.0" styleClass="textfield" stylesheets="@mainStyle.css" />
                                  </children>
                                  <styleClass>
                                     <String fx:value="white-bg" />

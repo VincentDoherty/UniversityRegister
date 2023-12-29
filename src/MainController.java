@@ -5,15 +5,16 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-	import javafx.fxml.FXML;
-	import javafx.scene.control.Button;
-	import javafx.scene.control.ComboBox;
-	import javafx.scene.control.TableColumn;
-	import javafx.scene.control.TableView;
-	import javafx.scene.control.TextField;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-	import javafx.scene.input.MouseEvent;
-	import javafx.scene.layout.AnchorPane;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.fxml.Initializable;
 
 
@@ -23,13 +24,16 @@ public class MainController implements Initializable{
 
 
 		@FXML
-		private ComboBox<Student> addStudent_Course;
+		private ComboBox<CourseType> addStudent_Course;
 
 	    @FXML
 	    private ComboBox<Student> addStudent_Student;
 
 	    @FXML
 	    private TextField addStudent_StudentID;
+	    
+	    @FXML
+	    private TextField addStudent_age;
 
 	    @FXML
 	    private Button addStudent_addBtn;
@@ -85,9 +89,18 @@ public class MainController implements Initializable{
 
 	    @FXML
 	    private TextField addStudent_search;
+	    
+	    @FXML
+	    private ComboBox<Module> addStudent_addModule;
 
 	    @FXML
 	    private Button addStudent_updateBtn;
+	    
+	    @FXML
+	    private Button closeButton;
+
+	    @FXML
+	    private Button minimizeButton;
 
 	    @FXML
 	    void addStudentAdd(ActionEvent event) {
@@ -133,12 +146,30 @@ public class MainController implements Initializable{
 	    void addStudentUpdate(ActionEvent event) {
 
 	    }
+
+	    @FXML
+	    void handleCloseButtonAction(ActionEvent event) {
+	        // Get a handle to the stage
+	        Stage stage = (Stage) closeButton.getScene().getWindow();
+	        // Close the stage
+	        stage.close();
+	    }
+
+	    @FXML
+	    void handleMinimizeButtonAction(ActionEvent event) {
+	        // Get a handle to the stage
+	        Stage stage = (Stage) minimizeButton.getScene().getWindow();
+	        // Minimize the stage
+	        stage.setIconified(true);
+	    }
 	    
 
 	    private ObservableList<Student> students = FXCollections.observableArrayList();
+	    private ObservableList<Gender> genderList = FXCollections.observableArrayList(Gender.values());
+	    private ObservableList<CourseType> courseTypeList = FXCollections.observableArrayList(CourseType.values());
+	    private ObservableList<Module> moduleList = FXCollections.observableArrayList(Module.values());
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		// TODO Auto-generated method stub
 		// Initialize columns
 	    addStudent_col_Age.setCellValueFactory(cellData -> cellData.getValue().ageProperty().asObject());
 	    addStudent_col_StudentID.setCellValueFactory(cellData -> cellData.getValue().studentIDProperty());
@@ -147,8 +178,12 @@ public class MainController implements Initializable{
 	    addStudent_col_gender.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().genderProperty()));
 	    addStudent_col_grade.setCellValueFactory(cellData -> cellData.getValue().gradeProperty().asObject());
 	    addStudent_col_module.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().moduleProperty()));
-	    // Assuming you have a similar property for the course in your Student class
 	    addStudent_col_course.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().courseProperty()));
+	    
+	    // Set items for ComboBoxes
+        addStudent_gender.setItems(genderList);
+        addStudent_Course.setItems(courseTypeList);
+        addStudent_addModule.setItems(moduleList);
 
 	    // Call the method to populate the table with data
 	    addStudent();

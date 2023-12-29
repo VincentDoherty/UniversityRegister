@@ -6,22 +6,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 public class Main extends Application {
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage primaryStage) throws Exception {
+    	//Load the FXML file and set up the scene
         Parent root = FXMLLoader.load(getClass().getResource("main-view.fxml"));   
         Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        
+        //Set up the stage
+        primaryStage.initStyle(StageStyle.UNDECORATED); //Removes default window decorations
+        primaryStage.setScene(scene);
+        
+        // Show the stage
+        primaryStage.show();
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         launch(args);
-    }
-    
+    } 
 }
