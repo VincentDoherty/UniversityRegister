@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -102,21 +103,78 @@ public class MainController implements Initializable{
 	    @FXML
 	    private Button minimizeButton;
 
+	 // Add a student
 	    @FXML
-	    void addStudentAdd(ActionEvent event) {
+	    private void addStudentAdd(ActionEvent event) {
+	        // Retrieve data from input fields
+	        String studentID = addStudent_StudentID.getText();
 
+	        // Check if a student with the same ID already exists
+	        if (isStudentIDUnique(studentID)) {
+	            String firstName = addStudent_firstName.getText();
+	            String lastName = addStudent_lastName.getText();
+	            Gender gender = addStudent_gender.getValue();
+	            CourseType course = addStudent_Course.getValue();
+	            Module module = addStudent_addModule.getValue();
+	            int grade = Integer.parseInt(addStudent_grade.getText());
+	            int age = Integer.parseInt(addStudent_age.getText());
+
+	            // Create a new student and add it to the list
+	            Student newStudent = new Student(studentID, firstName, lastName, gender, course, module, grade, age);
+	            students.add(newStudent);
+
+	            // Refresh the table view
+	            addStudent_tableView.refresh();
+
+	            // Clear the form fields
+	            addStudent_clearForm();
+	        } else {
+	            // Display an error message or handle the duplicate ID case
+	            // For example, you can show a dialog, display a message, or log an error
+	            System.out.println("Error: Student with the same ID already exists.");
+	        }
 	    }
+
+	 // Check if a student with the given ID already exists
+	    private boolean isStudentIDUnique(String studentID) {
+	        for (Student student : students) {
+	            if (student.hasSameID(studentID)) {
+	                return false; // Student with the same ID already exists
+	            }
+	        }
+	        return true; // Student ID is unique
+	    }
+
+
 
 	    @FXML
 	    void addStudentCourseList(ActionEvent event) {
 
 	    }
 	    
+	 // Delete a selected student
 	    @FXML
-	    void addStudentDelete(ActionEvent event) {
+	    private void addStudentDelete(ActionEvent event) {
+	        // Get the selected student
+	        Student selectedStudent = addStudent_tableView.getSelectionModel().getSelectedItem();
 
+	        // Remove the selected student from the list
+	        students.remove(selectedStudent);
+
+	        // Refresh the table view
+	        addStudent_tableView.refresh();
+
+	        // Clear the form fields or perform other actions
+	        addStudent_clearForm();
 	    }
 
+	    @FXML
+	    void clearForm(ActionEvent event) {
+	    	addStudent_clearForm();
+	    	addStudent_age.clear();  // Clear age field
+	    	addStudent_Course.getSelectionModel().clearSelection();  // Clear course field
+	    }
+	    
 	    @FXML
 	    void addStudentGenderList(ActionEvent event) {
 
@@ -136,6 +194,9 @@ public class MainController implements Initializable{
 	    void addStudentSearch(KeyEvent event) {
 
 	    }
+	    
+	    @FXML
+	    private ChoiceBox<?> searchFilter;
 
 	    @FXML
 	    void addStudentSelect(MouseEvent event) {
@@ -163,6 +224,7 @@ public class MainController implements Initializable{
 	        stage.setIconified(true);
 	    }
 	    
+	    
 
 	    private ObservableList<Student> students = FXCollections.observableArrayList();
 	    private ObservableList<Gender> genderList = FXCollections.observableArrayList(Gender.values());
@@ -187,6 +249,25 @@ public class MainController implements Initializable{
 
 	    // Call the method to populate the table with data
 	    addStudent();
+	    
+	 // Set up the event handler for row selection
+	    addStudent_tableView.setOnMouseClicked(event -> {
+	        // Check if a row is selected
+	        if (!addStudent_tableView.getSelectionModel().isEmpty()) {
+	            // Get the selected student
+	            Student selectedStudent = addStudent_tableView.getSelectionModel().getSelectedItem();
+
+	            // Populate text fields with selected student's information
+	            addStudent_StudentID.setText(selectedStudent.studentIDProperty().getValue());
+	            addStudent_firstName.setText(selectedStudent.firstNameProperty().getValue());
+	            addStudent_lastName.setText(selectedStudent.lastNameProperty().getValue());
+	            addStudent_gender.setValue(selectedStudent.genderProperty());
+	            addStudent_addModule.setValue(selectedStudent.moduleProperty());
+	            addStudent_grade.setText(Integer.toString(selectedStudent.gradeProperty().get()));
+	            addStudent_age.setText(Integer.toString(selectedStudent.ageProperty().get()));
+	            addStudent_Course.setValue(selectedStudent.courseProperty());
+	        }
+	    });
 	    
 		//set data to the TableView
 		addStudent_tableView.setItems(students);}
@@ -235,9 +316,11 @@ public class MainController implements Initializable{
 		    addStudent_firstName.clear();
 		    addStudent_lastName.clear();
 		    addStudent_gender.getSelectionModel().clearSelection();
-//		    addStudent_addModule.getSelectionModel().clearSelection();
+		    addStudent_addModule.getSelectionModel().clearSelection();
 		    addStudent_grade.clear();
 		}
+		
+		
 
 
 }

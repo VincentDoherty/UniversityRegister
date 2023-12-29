@@ -12,7 +12,7 @@ public record Student(
     Module Module,
     int Grade,
     int Age) {
-	
+
 public StringProperty studentIDProperty() {
     return new SimpleStringProperty(StudentID);
 }
@@ -40,6 +40,10 @@ public IntegerProperty gradeProperty() {
 }
 public IntegerProperty ageProperty() {
     return new SimpleIntegerProperty(Age);
+}
+//Method to check equality based on StudentID
+public boolean hasSameID(String otherID) {
+    return StudentID.equals(otherID);
 }}
 enum Gender {
 	Male, Female, other
