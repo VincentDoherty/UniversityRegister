@@ -1,3 +1,6 @@
+
+
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -6,17 +9,19 @@ import javafx.stage.Stage;
 
 
 public class Main extends Application {
-	@Override
-	public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("main-view.fxml"));
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("main-view.fxml"));   
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setResizable(false);
-        stage.setTitle("Student Register");
         stage.show();
     }
-    public static void main(String[] args) {
-        launch();
-    }
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
+    
 }
