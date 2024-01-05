@@ -27,16 +27,7 @@
 }
 
 .nav-form{
-    -fx-background-color:linear-gradient(to bottom right, #272b3f, #256b51);
-}
-
-.nav-btn{
-    -fx-background-color:transparent;
-    -fx-cursor:hand;
-    -fx-font-family:"Arial";
-    -fx-font-size:12px;
-    -fx-text-fill:#fff;
-    -fx-alignment:CENTER-LEFT;
+    -fx-background-color:linear-gradient(to bottom right, #04a5ba, #bea307);
 }
 .shadow{
     -fx-effect:dropshadow(three-pass-box, rgba(0,0,0,0.5), 6,0,0,0);
@@ -47,14 +38,9 @@
     -fx-background-radius:8px;
 }
 
-.card{
-    -fx-background-color:linear-gradient(to right, #2b303c, #525968);
-    -fx-background-radius:5px;
-}
-
 .table-view{
     -fx-background-color:transparent;
-    -fx-border-color:linear-gradient(to bottom right, #272b3f, #256b51);
+    -fx-border-color:linear-gradient(to bottom right, #04a5ba, #bea307);
     -fx-border-radius:8px;
     -fx-padding:0px;
 }
@@ -62,7 +48,7 @@
     -fx-alignment:CENTER;
 }
 .table-view .column-header-background{
-    -fx-background-color:linear-gradient(to bottom right, #272b3f, #256b51);
+    -fx-background-color:linear-gradient(to bottom right, #04a5ba, #bea307);
     -fx-background-insets: 0 0 0 0;
     -fx-background-radius:8px 8px 0px 0px;
 }
@@ -77,7 +63,7 @@
 
 .textfield{
     -fx-background-color:linear-gradient(to bottom, #efefef, #eee);
-    -fx-border-color:linear-gradient(to bottom right, #272b3f, #256b51);
+    -fx-border-color:linear-gradient(to bottom right, #04a5ba, #bea307);
     -fx-border-width:.8px;
     -fx-font-family:"Tahoma";
     -fx-border-radius:4px;
@@ -89,12 +75,11 @@
 
 .search{
     -fx-background-color:transparent;
-    -fx-border-color:linear-gradient(to bottom right, #272b3f, #256b51);
+    -fx-border-color:linear-gradient(to bottom right, #04a5ba, #bea307);
     -fx-border-radius:5px;
     -fx-font-size:13px;
     -fx-font-family:"Arial";
     -fx-border-width:1px;
-    -fx-padding:0px 0px 0px 28px;
 }
 .search:focused{
     -fx-border-width:2px;
@@ -107,15 +92,12 @@
 }
 
 .add-btn{
-    -fx-background-color:#304575;
+    -fx-background-color:#1da5a2;
     -fx-background-radius:8px;
     -fx-text-fill:#fff;
     -fx-font-size:14px;
     -fx-font-family:"Arial";
     -fx-cursor:hand;
-}
-.add-btn:hover{
-    -fx-background-color:#3357a4;
 }
 
 .update-btn{
@@ -126,37 +108,29 @@
     -fx-font-family:"Arial";
     -fx-cursor:hand;
 }
-.update-btn:hover{
-    -fx-background-color:#309a65;
-}
 
 .delete-btn{
-    -fx-background-color:#86253f;
+    -fx-background-color:#ce0601
+;
     -fx-background-radius:8px;
     -fx-text-fill:#fff;
     -fx-font-size:14px;
     -fx-font-family:"Arial";
     -fx-cursor:hand;
-}
-.delete-btn:hover{
-    -fx-background-color:#ae1d46;
 }
 
 .clear-btn{
-    -fx-background-color:#753566;
+    -fx-background-color:#b6a30f;
     -fx-background-radius:8px;
     -fx-text-fill:#fff;
     -fx-font-size:14px;
     -fx-font-family:"Arial";
     -fx-cursor:hand;
-}
-.clear-btn:hover{
-    -fx-background-color:#9d3485;
 }
 
 .label-info{
     -fx-background-color:transparent;
-    -fx-border-color:linear-gradient(to bottom right, #272b3f, #256b51);
+    -fx-border-color:linear-gradient(to bottom right, #04a5ba, #bea307);
     -fx-border-radius:4px;
     -fx-padding:0px 0px 0px 8px;
 }

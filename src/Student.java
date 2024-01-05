@@ -12,6 +12,38 @@ public record Student(
     Module Module,
     int Grade,
     int Age) {
+	
+    public String getStudentID() {
+        return StudentID;
+    }
+
+    public String getFirstName() {
+        return FirstName;
+    }
+
+    public String getLastName() {
+        return LastName;
+    }
+
+    public Gender getGender() {
+        return Gender;
+    }
+
+    public CourseType getCourse() {
+        return Course;
+    }
+
+    public Module getModule() {
+        return Module;
+    }
+
+    public int getGrade() {
+        return Grade;
+    }
+
+    public int getAge() {
+        return Age;
+    }
 
 public StringProperty studentIDProperty() {
     return new SimpleStringProperty(StudentID);
