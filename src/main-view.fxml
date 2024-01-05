@@ -29,11 +29,11 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="1049.0" layoutY="9.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="50.0" styleClass="close" stylesheets="@mainStyle.css">
+                              <Button fx:id="closeButton" layoutX="1049.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="0.0" prefWidth="50.0" styleClass="close" stylesheets="@mainStyle.css">
                                  <graphic>
                                     <FontAwesomeIcon glyphName="CLOSE" />
                                  </graphic></Button>
-                              <Button layoutX="998.0" layoutY="9.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" styleClass="minimize" stylesheets="@mainStyle.css">
+                              <Button fx:id="minimizeButton" layoutX="998.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleMinimizeButtonAction" prefHeight="25.0" prefWidth="50.0" styleClass="minimize" stylesheets="@mainStyle.css">
                                  <graphic>
                                     <FontAwesomeIcon glyphName="MINUS" />
                                  </graphic></Button>
@@ -48,21 +48,40 @@
                      <children>
                         <AnchorPane prefHeight="555.0" prefWidth="200.0" styleClass="nav-form" stylesheets="@mainStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label layoutX="52.0" layoutY="150.0" text="Welcome!" textFill="WHITE" AnchorPane.topAnchor="150.0">
+                              <Line endX="177.60000610351562" endY="182.3999786376953" layoutX="-2.0" layoutY="166.0" startX="27.199987411499023" startY="182.3999786376953" stroke="WHITE" />
+                              <Label fx:id="averageGradeLabel" layoutX="70.0" layoutY="311.0" prefHeight="30.0" prefWidth="100.0" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="215.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="311.0">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="51.0" layoutY="219.0" text="Welcome!" textFill="WHITE">
                                  <font>
                                     <Font name="Arial Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <Line endX="177.60000610351562" endY="182.3999786376953" startX="27.199987411499023" startY="182.3999786376953" stroke="WHITE" />
-                              <Button layoutX="74.0" layoutY="215.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="@mainStyle.css" text="View Students" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="215.0">
-                                 <graphic>
-                                    <FontAwesomeIcon fill="WHITE" glyphName="USERS" size="1.2em" />
-                                 </graphic></Button>
-                              <Button layoutX="10.0" layoutY="259.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn" stylesheets="@mainStyle.css" text="Add Students" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="250.0">
-                                 <graphic>
-                                    <FontAwesomeIcon fill="WHITE" glyphName="USER_PLUS" size="1.2em" />
-                                 </graphic></Button>
-                              <FontAwesomeIcon fill="WHITE" glyphName="USER" layoutX="55.0" layoutY="132.0" size="10em" />
+                              <Label layoutX="10.0" layoutY="242.0" text="The average grade" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="14.0" layoutY="266.0" text="for the students on" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="14.0" layoutY="288.0" text="the table currently" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="40.0" layoutY="314.0" text="is:" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="177.60000610351562" endY="182.3999786376953" layoutX="-5.0" layoutY="24.0" startX="27.199987411499023" startY="182.3999786376953" stroke="WHITE" />
+                              <FontAwesomeIcon fill="WHITE" glyphName="ANGLE_DOUBLE_UP" layoutX="39.0" layoutY="180.0" size="15em" />
+                              <FontAwesomeIcon fill="WHITE" glyphName="ANGLE_DOUBLE_DOWN" layoutX="39.0" layoutY="503.0" size="15em" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -71,7 +90,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="addEmployee_form" prefHeight="555.0" prefWidth="889.0">
+                        <AnchorPane fx:id="addStudent_form" prefHeight="555.0" prefWidth="889.0">
                            <children>
                               <AnchorPane layoutX="15.0" layoutY="14.0" prefHeight="528.0" prefWidth="859.0" stylesheets="@mainStyle.css">
                                  <children>
@@ -81,61 +100,118 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                        <children>
-                                          <TableView fx:id="addStudent_tableView" layoutX="10.0" layoutY="62.0" onMouseClicked="#addEmployeeSelect" prefHeight="227.0" prefWidth="840.0">
+                                          <TableView fx:id="addStudent_tableView" layoutX="10.0" layoutY="14.0" onMouseClicked="#addStudentSelect" prefHeight="275.0" prefWidth="840.0">
                                              <columns>
-                                                <TableColumn fx:id="addStudent_col_StudentID" prefWidth="98.39999389648438" text="Student ID" />
-                                                <TableColumn fx:id="addStudent_col_firstName" prefWidth="129.60000610351562" text="First Name" />
-                                                <TableColumn fx:id="addStudent_col_lastName" prefWidth="128.0" text="Last Name" />
-                                                <TableColumn fx:id="addStudent_col_gender" prefWidth="109.5999755859375" text="Gender" />
-                                                <TableColumn fx:id="addStudent_col_module" prefWidth="146.39996337890625" text="Module" />
-                                                <TableColumn fx:id="addStudent_col_grade" prefWidth="113.60003662109375" text="Grade" />
-                                                <TableColumn fx:id="addStudent_col_Age" prefWidth="119.199951171875" text="Age" />
+                                                <TableColumn fx:id="addStudent_col_StudentID" prefWidth="81.59999084472656" text="Student ID" />
+                                                <TableColumn fx:id="addStudent_col_firstName" prefWidth="110.39999389648438" text="First Name" />
+                                                <TableColumn fx:id="addStudent_col_lastName" prefWidth="124.0" text="Last Name" />
+                                                <TableColumn fx:id="addStudent_col_gender" prefWidth="111.20001220703125" text="Gender" />
+                                                <TableColumn fx:id="addStudent_col_course" prefWidth="105.60003662109375" text="Course" />
+                                                <TableColumn fx:id="addStudent_col_module" prefWidth="113.59991455078125" text="Module" />
+                                                <TableColumn fx:id="addStudent_col_grade" prefWidth="102.4000244140625" text="Grade" />
+                                                <TableColumn fx:id="addStudent_col_Age" prefWidth="92.00006103515625" text="Age" />
                                              </columns>
                                           </TableView>
-                                          <TextField fx:id="addStudent_search" layoutX="31.0" layoutY="12.0" onKeyTyped="#addEmployeeSearch" prefHeight="30.0" prefWidth="277.0" promptText="Seach" styleClass="search" stylesheets="@mainStyle.css" />
-                                          <FontAwesomeIcon glyphName="SEARCH" layoutX="14.0" layoutY="34.0" size="1.5em" text="" textAlignment="RIGHT" AnchorPane.leftAnchor="10.0" />
                                        </children>
                                     </AnchorPane>
-                                    <Label layoutX="14.0" layoutY="332.0" text="Student ID:">
+                                    <Label layoutX="15.0" layoutY="325.0" text="Student ID:">
                                        <font>
                                           <Font name="Tahoma" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="addStudent_StudentID" layoutX="97.0" layoutY="329.0" prefHeight="25.0" prefWidth="172.0" styleClass="textfield" stylesheets="@mainStyle.css" />
-                                    <Label layoutX="14.0" layoutY="371.0" text="First Name:">
+                                    <TextField fx:id="addStudent_StudentID" layoutX="95.0" layoutY="322.0" prefHeight="25.0" prefWidth="120.0" styleClass="textfield" stylesheets="@mainStyle.css" />
+                                    <Label layoutX="14.0" layoutY="364.0" text="First Name:">
                                        <font>
                                           <Font name="Tahoma" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="addStudent_firstName" layoutX="97.0" layoutY="367.0" prefHeight="25.0" prefWidth="172.0" styleClass="textfield" stylesheets="@mainStyle.css" />
-                                    <Label layoutX="15.0" layoutY="408.0" text="Last Name:">
+                                    <TextField fx:id="addStudent_firstName" layoutX="95.0" layoutY="360.0" prefHeight="25.0" prefWidth="120.0" styleClass="textfield" stylesheets="@mainStyle.css" />
+                                    <Label layoutX="16.0" layoutY="401.0" text="Last Name:">
                                        <font>
                                           <Font name="Tahoma" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="addStudent_lastName" layoutX="97.0" layoutY="405.0" prefHeight="25.0" prefWidth="172.0" styleClass="textfield" stylesheets="@mainStyle.css" />
-                                    <Label layoutX="15.0" layoutY="447.0" text="Gender:">
+                                    <TextField fx:id="addStudent_lastName" layoutX="95.0" layoutY="398.0" prefHeight="25.0" prefWidth="120.0" styleClass="textfield" stylesheets="@mainStyle.css" />
+                                    <Label layoutX="35.0" layoutY="440.0" text="Gender:">
                                        <font>
                                           <Font name="Tahoma" size="14.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="addStudent_gender" layoutX="97.0" layoutY="444.0" onAction="#addStudentGenderList" prefWidth="150.0" promptText="Choose" styleClass="textfield" stylesheets="@mainStyle.css" />
-                                    <Label layoutX="300.0" layoutY="327.0" text="Grade:">
+                                    <ComboBox fx:id="addStudent_gender" layoutX="95.0" layoutY="437.0" onAction="#addStudentGenderList" prefHeight="25.0" prefWidth="120.0" promptText="Gender" styleClass="textfield" stylesheets="@mainStyle.css" />
+                                    <Label layoutX="233.0" layoutY="325.0" text="Grade:">
                                        <font>
                                           <Font name="Tahoma" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="addStudent_grade" layoutX="358.0" layoutY="328.0" prefHeight="25.0" prefWidth="172.0" styleClass="textfield" stylesheets="@mainStyle.css" />
-                                    <Label layoutX="300.0" layoutY="371.0" text="Module:">
+                                    <TextField fx:id="addStudent_grade" layoutX="281.0" layoutY="322.0" prefHeight="25.0" prefWidth="40.0" styleClass="textfield" stylesheets="@mainStyle.css" />
+                                    <Label layoutX="225.0" layoutY="364.0" text="Module:">
                                        <font>
                                           <Font name="Tahoma" size="14.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="addStudent_Student" layoutX="358.0" layoutY="367.0" onAction="#addStudentModuleList" prefWidth="150.0" promptText="Choose" styleClass="textfield" stylesheets="@mainStyle.css" />
-                                    <Button fx:id="addStudent_addBtn" layoutX="722.0" layoutY="469.0" mnemonicParsing="false" onAction="#addStudentAdd" prefHeight="41.0" prefWidth="94.0" styleClass="add-btn" stylesheets="@mainStyle.css" text="Add" />
-                                    <Button fx:id="addStudent_updateBtn" layoutX="615.0" layoutY="469.0" mnemonicParsing="false" onAction="#addStudentUpdate" prefHeight="41.0" prefWidth="94.0" styleClass="update-btn" stylesheets="@mainStyle.css" text="Update" />
-                                    <Button fx:id="addStudent_deleteBtn" layoutX="462.0" layoutY="469.0" mnemonicParsing="false" onAction="#addStudentDelete" prefHeight="41.0" prefWidth="94.0" styleClass="delete-btn" stylesheets="@mainStyle.css" text="Delete" />
-                                    <Button fx:id="addStudent_clearBtn" layoutX="356.0" layoutY="469.0" mnemonicParsing="false" onAction="#addStudentReset" prefHeight="41.0" prefWidth="94.0" styleClass="clear-btn" stylesheets="@mainStyle.css" text="Clear" />
+                                    <ComboBox fx:id="addStudent_addModule" layoutX="281.0" layoutY="360.0" onAction="#addStudentModuleList" prefHeight="25.0" prefWidth="120.0" promptText="Choose" styleClass="textfield" stylesheets="@mainStyle.css" />
+                                    <Button fx:id="addStudent_addBtn" layoutX="256.0" layoutY="440.0" mnemonicParsing="false" onAction="#addStudentAdd" prefHeight="25.0" prefWidth="70.0" styleClass="add-btn" stylesheets="@mainStyle.css" text="Add" />
+                                    <Button fx:id="addStudent_updateBtn" layoutX="256.0" layoutY="472.0" mnemonicParsing="false" onAction="#addStudentUpdate" prefHeight="25.0" prefWidth="70.0" styleClass="update-btn" stylesheets="@mainStyle.css" text="Update" />
+                                    <Button fx:id="addStudent_deleteBtn" layoutX="330.0" layoutY="440.0" mnemonicParsing="false" onAction="#addStudentDelete" prefHeight="25.0" prefWidth="70.0" styleClass="delete-btn" stylesheets="@mainStyle.css" text="Delete" />
+                                    <Button fx:id="addStudent_clearBtn" layoutX="330.0" layoutY="472.0" mnemonicParsing="false" onAction="#clearForm" prefHeight="25.0" prefWidth="70.0" styleClass="clear-btn" stylesheets="@mainStyle.css" text="Clear" />
+                                    <Label layoutX="226.0" layoutY="401.0" text="Course:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="addStudent_Course" layoutX="280.0" layoutY="398.0" onAction="#addStudentCourseList" prefHeight="25.0" prefWidth="120.0" promptText="Choose" styleClass="textfield" stylesheets="@mainStyle.css" />
+                                    <Label layoutX="328.0" layoutY="325.0" text="Age:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="addStudent_age" layoutX="361.0" layoutY="322.0" prefHeight="25.0" prefWidth="40.0" styleClass="textfield" stylesheets="@mainStyle.css" />
+                                    <TextField fx:id="searchFilter" layoutX="633.0" layoutY="328.0" onAction="#handleCourseAndNameQuery" prefHeight="27.0" prefWidth="92.0" promptText="Name" styleClass="search" stylesheets="@mainStyle.css" />
+                                    <Line endX="-109.5999755859375" endY="120.0" layoutX="533.0" layoutY="386.0" startX="-109.5999755859375" startY="-60.0" />
+                                    <Label layoutX="430.0" layoutY="308.0" text="Filters:">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="genderFilter" layoutX="545.0" layoutY="474.0" onAction="#handleGenderFilter" prefHeight="25.0" prefWidth="102.0" promptText="Gender" styleClass="textfield" stylesheets="@mainStyle.css" />
+                                    <ComboBox fx:id="courseFilter" layoutX="732.0" layoutY="329.0" onAction="#handleCourseAndNameQuery" prefHeight="26.0" prefWidth="90.0" promptText="Course" styleClass="textfield" stylesheets="@mainStyle.css" />
+                                    <ComboBox fx:id="moduleFilter" layoutX="644.0" layoutY="403.0" onAction="#handleModuleQuery" prefWidth="150.0" promptText="Module" styleClass="textfield" stylesheets="@mainStyle.css" />
+                                    <TextField fx:id="minAgeFilter" layoutX="565.0" layoutY="439.0" onAction="#handleAgeFilter" prefHeight="25.0" prefWidth="40.0" promptText="Min" styleClass="textfield" stylesheets="@mainStyle.css" />
+                                    <Button fx:id="resetFiltersButton" layoutX="767.0" layoutY="485.0" mnemonicParsing="false" onAction="#resetFilters" prefHeight="25.0" prefWidth="70.0" styleClass="clear-btn" stylesheets="@mainStyle.css" text="Reset" />
+                                    <TextField fx:id="startingLetterTextField" layoutX="736.0" layoutY="366.0" onAction="#handleNameStartsWithQuery" prefHeight="27.0" prefWidth="79.0" promptText="First letter" styleClass="search" stylesheets="@mainStyle.css" />
+                                    <Label layoutX="429.0" layoutY="331.0" text="Filter by first name and course:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="431.0" layoutY="370.0" text="Filter by the first letter of the first or last name:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="432.0" layoutY="477.0" text="Filter by gender:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="672.0" layoutY="469.0" text="Reset filter to view all students:">
+                                       <font>
+                                          <Font name="Tahoma" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="432.0" layoutY="404.0" text="Filter by module and sort marks:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="432.0" layoutY="441.0" text="Filter min/max age:">
+                                       <font>
+                                          <Font name="Tahoma" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="maxAgeFilter" layoutX="616.0" layoutY="438.0" onAction="#handleAgeFilter" prefHeight="25.0" prefWidth="40.0" promptText="Max" styleClass="textfield" stylesheets="@mainStyle.css" />
+                                    <Label layoutX="59.0" layoutY="475.0" text="Ensure that you enter the student ID" />
+                                    <Label layoutX="163.0" layoutY="491.0" text="requiring update" />
                                  </children>
                                  <styleClass>
                                     <String fx:value="white-bg" />
